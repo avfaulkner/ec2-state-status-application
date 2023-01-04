@@ -4,6 +4,9 @@
     <title>Slum Portal</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
     <style>
       * {
         box-sizing: border-box;
@@ -26,7 +29,7 @@
       nav {
         float: left;
         width: 30%;
-        height: 300px; /* only for demonstration, should be removed */
+        /* height: 300px; only for demonstration, should be removed */
         background: #ccc;
         padding: 20px;
       }
@@ -42,7 +45,7 @@
         padding: 20px;
         width: 70%;
         background-color: #f1f1f1;
-        height: 300px; /* only for demonstration, should be removed */
+        /* height: 300px; only for demonstration, should be removed */
       }
       
       /* Clear floats after the columns */
@@ -103,11 +106,11 @@
           <nav>
           <h3>Active Slumbering Admins:</h3>
           <div class="vertical-menu">
-          <a href="#" class="active">Home</a>
+          <a href="#" class="active">Admins</a>
           <ul>
             {% for item in contents %}
               <li>
-                <a href="/"> {{ item }} </a>
+                <a href="{{url_for('admin', type='{{ item }}' )}}"> {{ item }} </a>
               </li>
             {% endfor %}
           </ul>
@@ -117,11 +120,13 @@
     <!-- </div> -->
     <article>
       <h1>Information</h1>
-      <p>London is the capital city of England. It is the most populous city in the  United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+      <img src="/plot_running.png" alt="running plot">  
+      <img src="/plot_stopped.png" alt="stopped plot">  
+      <img src="/bar-graphs" alt="running plot">    
     </article>
   </section>
-  <footer>
+  <!-- <footer>
     <p>Footer</p>
-  </footer>
+  </footer> -->
   </body>
 </html>

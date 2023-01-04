@@ -18,3 +18,5 @@ s3transfer
 six
 urllib3
 Werkzeug
+matplotlib
+pandas
