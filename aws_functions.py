@@ -1,4 +1,4 @@
-import boto3, itertools
+import boto3, itertools, json
 
 def upload(file_name, bucket, object_name):
     s3_client = boto3.client('s3')
@@ -20,38 +20,42 @@ def list_all_files(bucket):
         contents.append(item)
     return contents
 
-def list_slum_admins():
-    ec2 = boto3.client('ec2', 'us-east-1')
-    admins = []
-    filters = [
-        {
-            'Name': 'instance-state-name', 
-            'Values': ['running', 'stopped']
-        },
-        {
-            'Name': 'tag:slumbering-admin', 
-            'Values': ['true']  
-        }
-    ]
-    msg_running=[]
-    msg_stopped=[]
-    reservations = ec2.describe_instances(Filters=filters).get('Reservations', [])
-    for reservation in reservations:
-        for instance in reservation['Instances']:
-            tags = {}
-            for tag in instance['Tags']:
-                tags[tag['Key']] = tag['Value']
-                if tag['Key'] == 'Name':
-                    name=tag['Value']
+def list_demo_admins():
+    # ec2 = boto3.client('ec2', 'us-east-1')
+    # admins = []
+    # filters = [
+    #     {
+    #         'Name': 'instance-state-name', 
+    #         'Values': ['running', 'stopped']
+    #     },
+    #     {
+    #         'Name': 'tag:admin', 
+    #         'Values': ['true']  
+    #     }
+    # ]
+    # msg_running=[]
+    # msg_stopped=[]
+    # reservations = ec2.describe_instances(Filters=filters).get('Reservations', [])
+    # for reservation in reservations:
+    #     for instance in reservation['Instances']:
+    #         tags = {}
+    #         for tag in instance['Tags']:
+    #             tags[tag['Key']] = tag['Value']
+    #             if tag['Key'] == 'Name':
+    #                 name=tag['Value']
                 
-                    admins.append(name)
-                    print(admins)
-                    return admins 
-        # dynamodb = boto3.client('dynamodb', 'us-east-1')
-        # response = dynamodb.scan(TableName='')
-        # data = response['Items']
-        # while 'LastEvaluatedKey' in response:
-        #     response = dynamodb.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
-        #     data.extend(response['Items'])
-        # return data
+    #                 admins.append(name)
+    #                 print(admins)
+    #                 return admins 
+        dynamodb = boto3.resource('dynamodb', 'us-east-1')
+        table = dynamodb.Table('demo-admin-registry')
+        response = table.scan()
 
+        #response = dynamodb.scan(TableName='demo-admin-registry')
+        data = response['Items']
+        while 'LastEvaluatedKey' in response:
+            response = table.scan(ExclusiveStartKey=response['LastEvaluatedKey'])
+            data.extend(response['Items'])
+        return data
+
+# def membership

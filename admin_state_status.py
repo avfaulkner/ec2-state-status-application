@@ -12,7 +12,7 @@ import base64
 
 # NOTE: 
 
-# This script will query AWS for ec2 instances which have the slumbering-admin and t_role=admin tags and are in
+# This script will query AWS for ec2 instances which have the demo-admin and t_role=admin tags and are in
 # the running or stopped state. 
 #
 # This script will produce:
@@ -36,10 +36,8 @@ import base64
 
 
 aws_profile = os.getenv('AWS_PROFILE')
-# region = os.getenv('region')
+region = os.getenv('region')
 
-# aws_profile = "cctqa"
-region = "us-east-1"
 
 
 boto3.setup_default_session(profile_name=aws_profile)
@@ -67,7 +65,7 @@ stopped_file = 'admins_stopped.csv'
 
 def main():
     # Use the filter() method of the instances collection to retrieve
-    # all running and stopped Admin instances who have opted into the slumbering admin program. 
+    # all running and stopped Admin instances who have opted into the demo admin program. 
     filters = [
         {
             'Name': 'tag:t_role',
@@ -78,7 +76,7 @@ def main():
             'Values': ['running', 'stopped']
         },
         {
-            'Name': 'tag:slumbering-admin', 
+            'Name': 'tag:demo-admin', 
             'Values': ['true']  
         }
     ]
