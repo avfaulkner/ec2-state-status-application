@@ -1,191 +1,97 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Slum Portal</title>
+    <title>CCT Portal</title>
+    <link rel="stylesheet" href="../styles/style.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-      }
-      
-      /* Style the header */
-      /* header {
-        background-color: rgb(178, 70, 60);
-        padding: 30px;
-        text-align: center;
-        font-size: 35px;
-        color: white;
-      } */
-      
-      /* Create two columns/boxes that floats next to each other */
-      nav {
-        float: left;
-        width: 30%;
-        /* height: 300px; only for demonstration, should be removed */
-        background: #ccc;
-        padding: 20px;
-      }
-      
-      /* Style the list inside the menu */
-      nav ul {
-        list-style-type: disc;
-        padding: 0;
-      }
-      
-      article {
-        float: left;
-        padding: 20px;
-        width: 70%;
-        background-color: #f1f1f1;
-        /* height: 300px; only for demonstration, should be removed */
-      }
-      
-      /* Clear floats after the columns */
-      section::after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-      
-      /* Style the footer */
-      footer {
-        background-color: #777;
-        padding: 10px;
-        text-align: center;
-        color: white;
-      }
-      
-      /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-      @media (max-width: 600px) {
-        nav, article {
-          width: 100%;
-          height: auto;
-        }
-      }
+<style>
 
-      /* Vertical scroll bar */
-      .vertical-menu {
-        width: 200px;
-        height: 150px;
-        overflow-y: auto;
-      }
-
-      .vertical-menu a {
-        background-color: #eee;
-        color: black;
-        display: block;
-        padding: 12px;
-        text-decoration: none;
-      }
-
-      .vertical-menu a:hover {
-        background-color: #ccc;
-      }
-
-      .vertical-menu a.active {
-        background-color: #04AA6D;
-        color: white;
-      }
-      header {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #38444d;
-        text-align: center;
-        font-size: 35px;
-        color: white;
-      }
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #38444d;
-      }
-      li {
-  float: left;
-}
-
-li a, .dropbtn {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
-}
-
-li.dropdown {
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-
-      </style>
+</style>
   </head>
   <body>
     <!-- <div class="content"> -->
-      <header>
-        <h3 align ='center'>Demo Portal</h3>
-    </header>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li class="dropdown">
-          <a href="javascript:void(0)" class="dropbtn">Demo Dashboard</a>
-          <div class="dropdown-content">
-            <a href="/demodashboard">Dashboard</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
-          <li><a href="/about">About</a></li>
-          <li><a href="/help">Help</a></li>
-        </li>
-      </ul>
+      <script>
+      $(function() {
+        $("#navigation").load("navbar.html");
+    });
+    </script>
+
+<div class="header">
+  <img src="../assets/pearson_logo_white_bg.png" alt="logo" />
+  <h1 align ='center'>CCT Portal</h1>
+</div>
+<ul class="ul-nav">
+  <li class="li-nav"><a href="../index.html">Home</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Site Deployments</a>
+    <div class="dropdown-content">
+      <a href="./siteDeployments.html">Dashboard</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Slumbering Admins</a>
+    <div class="dropdown-content">
+      <a href="./modifyMembership.html">Modify Membership</a> 
+      <a href="./dashboard.html">State Status</a>
+    </div>
+  </li>
+  <li class="li-nav"><a href="./about.html">About</a></li>
+  <li class="li-nav"><a href="./help.html">Help</a></li>
+</ul>
+
     <section>
+
+      <button type="button" onclick="loadDoc()">Request data</button>
+
+      <!-- <li id="demo"></li> -->
+
+
+      <script>
+      function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/admins", true);
+        xhttp.send();
+      }
+
+      </script>
+
         <!-- <div> -->
           <nav>
           <h3>Active Slumbering Admins:</h3>
           <div class="vertical-menu">
           <a href="#" class="active">Admins</a>
           <ul>
-            {% for item in contents %}
-              <li>
-                <a href="{{url_for('admin', type='{{ item }}' )}}"> {{ item }} </a>
-              </li>
+            {% for item in text %}
+              <!-- <li> -->
+                <!-- <a href="{{url_for('demo', type='{{ item }}' )}}"> <p id="demo"></p> </a> -->
+                <li id="demo"></li>
+              <!-- </li> -->
+              
             {% endfor %}
           </ul>
-          </nav>
           </div>
+        </nav>
         <!-- </div> -->
     <!-- </div> -->
     <article>
       <h1>Information</h1>
-      <img src="/plot_running.png" alt="running plot">  
+      <img src="../plot_running.png" alt="running plot">  
       <!-- <img src="/plot_stopped.png" alt="stopped plot">   -->
     </article>
   </section>
-  <!-- <footer>
-    <p>Footer</p>
-  </footer> -->
+
+  <div class="footer">
+    <!-- <p>Footer</p> -->
+  </div>
+
   </body>
 </html>

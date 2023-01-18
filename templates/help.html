@@ -1,20 +1,59 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> -->
+	<head>
+		<title>CCT Portal</title>
+		<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+		<link rel="stylesheet" href="../styles/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="0"/> 	  
+	</head>
 
-<script> 
-    $(function(){
-        $("#header").load("index.html"); 
-    });
-    </script> 
+	<body>
+		<div class="header">
+			<img src="../assets/pearson_logo_white_bg.png" alt="logo" />
+			<h1 align ='center'>CCT Portal</h1>
+		  </div>
+		  <ul class="ul-nav">
+			<li class="li-nav"><a href="../index.html">Home</a></li>
+			<li class="dropdown">
+			  <a href="javascript:void(0)" class="dropbtn">Site Deployments</a>
+			  <div class="dropdown-content">
+				<a href="./siteDeployments.html">Dashboard</a>
+			  </div>
+			</li>
+			<li class="dropdown">
+			  <a href="javascript:void(0)" class="dropbtn">Slumbering Admins</a>
+			  <div class="dropdown-content">
+				<a href="./modifyMembership.html">Modify Membership</a> 
+				<a href="./dashboard.html">State Status</a>
+			  </div>
+			</li>
+			<li class="li-nav"><a href="./about.html">About</a></li>
+			<li class="li-nav"><a href="./help.html">Help</a></li>
+		  </ul>
+						
+		<section>
+			<nav>
+			  <h3>Help Topics</h3>
+			  <div class="vertical-menu">
+			  <ul>
+				<a href="optin.html">View Logs</a>
+				<a href="optout.html">Contact</a>
+			  </ul>
+			  </div>
+			</nav>		  
 
-</head>
-<body>
-    <div id="header"></div>
-<h3 align ='center'>Help Page</h3>
-<p align ='center'>Logs can be viewed here:</p>
-
+		<article>
+		  <h3 align ='center'>Help Topics</h3>
+		  
+		</article>
+		</section>
+		  
+	<div class="footer">
+		<!-- <p>Footer</p> -->
+	</div>
 </body>
-
 </html>

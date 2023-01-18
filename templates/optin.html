@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CCT Portal</title>
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+  <link rel="stylesheet" href="../styles/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/> 
+</head>
+
+<body>
+
+<div class="header">
+  <img src="../assets/pearson_logo_white_bg.png" alt="logo" />
+  <h1 align ='center'>CCT Portal</h1>
+</div>
+<ul class="ul-nav">
+  <li class="li-nav"><a href="../index.html">Home</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Site Deployments</a>
+    <div class="dropdown-content">
+      <a href="./siteDeployments.html">Dashboard</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Slumbering Admins</a>
+    <div class="dropdown-content">
+      <a href="./modifyMembership.html">Modify Membership</a> 
+      <a href="./dashboard.html">State Status</a>
+    </div>
+  </li>
+  <li class="li-nav"><a href="./about.html">About</a></li>
+  <li class="li-nav"><a href="./help.html">Help</a></li>
+</ul>
+
+<section>
+<nav>
+  <h3>Modify Membership &#13; of Slumbering Admins:</h3>
+  <div class="vertical-menu">
+  <ul>
+    <a href="./optin.html">Opt In</a>
+    <a href="./optout.html">Opt Out</a>
+  </ul>
+  </div>
+</nav>
+
+
+<script>
+  function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("demo").innerHTML = this.responseText;
+        // document.getElementById("idea").value.split(',').innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("POST", "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify", true);
+    xhttp.send();
+  }
+  
+  function addItem() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var a = document.getElementById("list");
+        var siteIdInput = document.getElementById("siteIdInput");
+        var li = document.createElement("li");
+        li.setAttribute('id', siteIdInput.value);
+        li.appendChild(document.createTextNode(siteIdInput.value));
+        a.appendChild(li);
+        document.getElementById("demo").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("POST", "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify", true);
+    xhttp.send();
+  }
+
+  </script>
+
+
+<article>
+<p><label for="siteIdInput"></label>Please enter each Site ID, separated by a comma. </p>
+<textarea align="center" id="siteIdInput" name="siteIdInput" 
+required="" pattern="\s*\d+(\s*,\s*\d*)*\s*" rows="3" value="testing"></textarea>
+<br>
+<button type="button" onclick="loadDoc()">Submit</button>
+
+
+<p id="demo"></p>
+<p id="idea"></p>
+<ul id="list"></ul>
+
+<!-- <form method="POST" action="https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify">
+  <input type="text" name="textbox" value="testing">
+  <input type="submit" value="Submit form">
+</form> -->
+
+<form onsubmit="return formSubmit(formId)"  method="POST" name="form" id="formId">
+  <input type="text" name="my-field" value="testing 1 2 3">
+  <input type="submit" value="Submit form">
+</form>
+
+<script>
+  function formSubmit(){
+    var url = "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify";
+    var request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.onload = function(){
+      console.log("IT WORKS");
+      console.log("request.responseText");
+    }
+    request.onerror = function(){
+      console.log("error", request);
+    }
+    request.send(new FormData(event.target));
+    // var formData = JSON.stringify(document.querySelector("#formId").serializeArray());
+    // request.send(new FormData(formData));
+    event.preventDefault();
+  }
+  function attachSubmitEvent(formId){
+    document.getElementById(formId).addEventListener("submit", formSubmit())
+  }
+</script>
+
+</article>
+</section>
+
+<div class="footer">
+  <!-- <p>Footer</p> -->
+</div>
+            
+</body>
+
+</html> 

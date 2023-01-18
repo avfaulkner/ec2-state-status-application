@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <title>CCT Portal</title>
   <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
@@ -12,22 +12,11 @@
 </head>
 
 <body>
-<!--Navigation bar-->
-<div class="header">
-    <img src="../assets/pearson_logo_white_bg.png" alt="logo" />
-    <h1 align ='center'>CCT Portal</h1>
-  </div>
 
-  <script>
-    $(function(){
-        $("#navbar").load("navbar.html");
-      });
-      var $base = $('navbar.html');
-      var foo = tmpl('navbar.html');
-    </script>
-    
-    <div id="navbar"></div>
-<!--end of Navigation bar-->
+<div class="header">
+  <img src="../assets/pearson_logo_white_bg.png" alt="logo" />
+  <h1 align ='center'>CCT Portal</h1>
+</div>
 <ul class="ul-nav">
   <li class="li-nav"><a href="../index.html">Home</a></li>
   <li class="dropdown">
@@ -47,28 +36,30 @@
   <li class="li-nav"><a href="./help.html">Help</a></li>
 </ul>
 
-
 <section>
-  <nav>
-    <h3>About</h3>
-  </nav>
+<nav>
+  <h3>Modify Membership &#13; of Slumbering Admins:</h3>
+  <div class="vertical-menu">
+  <ul>
+    <a href="./optin.html">Opt In</a>
+    <a href="./optout.html">Opt Out</a>
+  </ul>
+  </div>
+</nav>
+
+
+
+
 <article>
-<h3 align ='center'>About Page</h3>
-<p>This portal currently displays information about Admins and will allow users to: 
-    <ul>
-        <li>View state status for Admin machines.</li>
-        <li>View a list of currently opted in admins.</li>
-        <li>Change the Admin membership status of admin machines.</li>
-    </ul>
-</p>
+<p>Please choose an option from the menu on the left. </p>
+
 </article>
 </section>
 
-
-
 <div class="footer">
-    <!-- <p>Footer</p> -->
-  </div>
-  
+  <!-- <p>Footer</p> -->
+</div>
+            
 </body>
-</html>
+
+</html> 
