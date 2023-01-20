@@ -41,89 +41,63 @@
   <h3>Modify Membership &#13; of Slumbering Admins:</h3>
   <div class="vertical-menu">
   <ul>
-    <a href="./optin.html">Opt In</a>
+    <a href="./optin.html" class="active">Opt In</a>
     <a href="./optout.html">Opt Out</a>
   </ul>
   </div>
 </nav>
 
 
-<script>
-  function loadDoc() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("demo").innerHTML = this.responseText;
-        // document.getElementById("idea").value.split(',').innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("POST", "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify", true);
-    xhttp.send();
-  }
-  
-  function addItem() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var a = document.getElementById("list");
-        var siteIdInput = document.getElementById("siteIdInput");
-        var li = document.createElement("li");
-        li.setAttribute('id', siteIdInput.value);
-        li.appendChild(document.createTextNode(siteIdInput.value));
-        a.appendChild(li);
-        document.getElementById("demo").innerHTML = this.responseText;
-      }
-    };
-    xhttp.open("POST", "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify", true);
-    xhttp.send();
-  }
-
-  </script>
-
-
 <article>
-<p><label for="siteIdInput"></label>Please enter each Site ID, separated by a comma. </p>
-<textarea align="center" id="siteIdInput" name="siteIdInput" 
-required="" pattern="\s*\d+(\s*,\s*\d*)*\s*" rows="3" value="testing"></textarea>
-<br>
-<button type="button" onclick="loadDoc()">Submit</button>
+<p><label for="siteIdInput"></label>Please enter each Site ID, separated by a comma. </label></p>
 
+<!-- <form action="https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify"  method="POST"> -->
+  <textarea align="center" id="admin" name="admin" 
+  required="" pattern="\s*\d+(\s*,\s*\d*)*\s*" rows="3" value="UE1AC290018A01, UE1AC275128A01"></textarea>
+  <br>
+  <button type="button" onclick="sendJSON()">Submit</button>
+<!-- </form> -->
 
 <p id="demo"></p>
-<p id="idea"></p>
-<ul id="list"></ul>
 
-<!-- <form method="POST" action="https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify">
-  <input type="text" name="textbox" value="testing">
-  <input type="submit" value="Submit form">
-</form> -->
-
-<form onsubmit="return formSubmit(formId)"  method="POST" name="form" id="formId">
-  <input type="text" name="my-field" value="testing 1 2 3">
-  <input type="submit" value="Submit form">
-</form>
 
 <script>
-  function formSubmit(){
-    var url = "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify";
-    var request = new XMLHttpRequest();
-    request.open('POST', url, true);
-    request.onload = function(){
-      console.log("IT WORKS");
-      console.log("request.responseText");
-    }
-    request.onerror = function(){
-      console.log("error", request);
-    }
-    request.send(new FormData(event.target));
-    // var formData = JSON.stringify(document.querySelector("#formId").serializeArray());
-    // request.send(new FormData(formData));
-    event.preventDefault();
-  }
-  function attachSubmitEvent(formId){
-    document.getElementById(formId).addEventListener("submit", formSubmit())
-  }
+  function sendJSON(){
+    let result = document.querySelector('.result');
+    let admin = document.querySelector('#admin');
+    // let email = document.querySelector('#email');
+      
+    // Creating a XHR object
+    let xhr = new XMLHttpRequest();
+    let url = "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify";
+
+    // open a connection
+    xhr.open("POST", url, true);
+
+    // Set the request header i.e. which type of content you are sending
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    // Create a state change callback
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+
+            // Print received data from server
+            result.innerHTML = this.responseText;
+            document.getElementById("demo").innerHTML = this.responseText;
+
+        }
+    };
+
+    // Converting JSON data to string
+    var data = JSON.stringify({ "admin": admin.value});
+
+    // Sending data with the request
+    xhr.send(data);
+}
 </script>
+
+
+
 
 </article>
 </section>

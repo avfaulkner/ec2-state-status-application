@@ -53,14 +53,15 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background-color: #003057;
   left: 0%;
   right: 0%;
+  
 }
 
 .li-nav {
   float: left;
+
 }
 
 li a, .dropbtn {
@@ -222,7 +223,7 @@ section::after {
 
 .vertical-menu a.active {
   /* background-color: #04AA6D; */
-  color: white;
+  color: rgb(0, 0, 0);
   text-decoration: underline;
 }
 
