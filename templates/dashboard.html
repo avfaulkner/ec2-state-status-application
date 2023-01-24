@@ -66,17 +66,15 @@
 
         <!-- <div> -->
           <nav>
-          <h3>Active Slumbering Admins:</h3>
+          <h3>Active Slumbering Admins</h3>
           <div class="vertical-menu">
           <a href="#" class="active">Admins</a>
           <ul>
-            {% for item in text %}
               <!-- <li> -->
                 <!-- <a href="{{url_for('demo', type='{{ item }}' )}}"> <p id="demo"></p> </a> -->
                 <li id="demo"></li>
               <!-- </li> -->
               
-            {% endfor %}
           </ul>
           </div>
         </nav>
@@ -84,10 +82,25 @@
     <!-- </div> -->
     <article>
       <h1>Information</h1>
-      <img src="../plot_running.png" alt="running plot">  
+      <button type="button" onclick="loadDoc()">Request data</button>
+      <!-- <img src="../plot_running.png" alt="running plot">   -->
       <!-- <img src="/plot_stopped.png" alt="stopped plot">   -->
     </article>
   </section>
+
+  <script>
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML = this.responseText;
+        }
+      };
+      xhttp.open("GET", "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/admins", true);
+      xhttp.send();
+    }
+
+    </script>
 
   <div class="footer">
     <!-- <p>Footer</p> -->

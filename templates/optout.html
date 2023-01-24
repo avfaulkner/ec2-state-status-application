@@ -48,7 +48,7 @@
 </nav>
 
 
-<script>
+<!-- <script>
   function loadDoc() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -78,7 +78,7 @@
     xhttp.send();
   }
 
-  </script>
+  </script> -->
 
 
 <article>
@@ -91,7 +91,7 @@
     <button type="button" onclick="sendJSON()">Submit</button>
   <!-- </form> -->
   
-  <p id="demo"></p>
+  <!-- <p id="demo"></p> -->
   
   
   <script>
@@ -102,7 +102,7 @@
         
       // Creating a XHR object
       let xhr = new XMLHttpRequest();
-      let url = "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify";
+      let url = "https://olm4da58mi.execute-api.us-east-1.amazonaws.com/stable/optin";
   
       // open a connection
       xhr.open("POST", url, true);
@@ -122,7 +122,7 @@
       };
 
       // Converting JSON data to string
-      var data = JSON.stringify({ "admin": admin.value});
+      var data = JSON.stringify({ "adminOptout": admin.value});
 
       // Sending data with the request
       xhr.send(data);

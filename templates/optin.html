@@ -52,7 +52,7 @@
 <p><label for="siteIdInput"></label>Please enter each Site ID, separated by a comma. </label></p>
 
 <!-- <form action="https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify"  method="POST"> -->
-  <textarea align="center" id="admin" name="admin" 
+  <textarea align="center" id="admin"  
   required="" pattern="\s*\d+(\s*,\s*\d*)*\s*" rows="3" value="UE1AC290018A01, UE1AC275128A01"></textarea>
   <br>
   <button type="button" onclick="sendJSON()">Submit</button>
@@ -69,7 +69,8 @@
       
     // Creating a XHR object
     let xhr = new XMLHttpRequest();
-    let url = "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify";
+    // let url = "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/modify";
+    let url = "https://olm4da58mi.execute-api.us-east-1.amazonaws.com/stable/optin";
 
     // open a connection
     xhr.open("POST", url, true);
@@ -89,7 +90,7 @@
     };
 
     // Converting JSON data to string
-    var data = JSON.stringify({ "admin": admin.value});
+    var data = JSON.stringify({ "adminOptin": admin.value});
 
     // Sending data with the request
     xhr.send(data);
