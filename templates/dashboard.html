@@ -9,20 +9,6 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-    <style>
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      
-      th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #DDD;
-      }
-      
-      tr:hover {background-color: #D6EEEE;}
-      </style>
   </head>
   <body>
 
@@ -51,35 +37,32 @@
 
     <section>
 
-      <button type="button" onclick="loadDoc()">Request data</button>
+      <button type="button" onclick="loadDoc()">List Slumbering Admins</button>
 
-      <!-- <li id="demo"></li> -->
-
-        <!-- <div> -->
           <nav>
           <h3></h3>
           <div class="vertical-menu">
-          <a href="#" class="active">Admins</a>
-          <ul>
+            <h3>Slumbering Admin Information</h3>
+            <ul>
+              <a href="#" class="active">List Active Members</a>
+            </ul>
+          <!-- Eventually some menu items will appear here. -->
+          <!-- <ul> -->
               <!-- <li> -->
                 <!-- <a href="{{url_for('demo', type='{{ item }}' )}}"> <p id="demo"></p> </a> -->
-                <!-- <li id="demo"></li> -->
-              <!-- </li> -->
-              
-          </ul>
+              <!-- </li> -->   
+          <!-- </ul> -->
           </div>
         </nav>
-        <!-- </div> -->
-    <!-- </div> -->
     <article>
       <h1>Active Slumbering Admins</h1>
-      <button type="button" onclick="loadDoc2()">Request data</button>
-     
-      <p id="demo"></p>
+      <p>Press the button below to scan the Slumbering Admin database for a list of active members. </p>
+      <button type="button" onclick="loadDoc2()">Scan Database</button>
+        
+        <p id="demo"></p>
 
 <script>
-      // This is the best so far!!!!!!!!!!!!!!!!!!!
-      // Used with this: 
+// NOTE: Used with this api gateway integration response output format: 
 //     #set($inputRoot = $input.path('$'))  
 // {  
 //     ## "Count": "$inputRoot.Count",  
@@ -96,7 +79,9 @@
     xmlhttp.onload = function() {
       const myObj = JSON.parse(this.responseText)["Items"];
       console.log(myObj)
-      let text = "<table border='1'>"
+      let text = "<table border='1' class='fixed_header'>"
+        // Create column 1
+        text += "<thead><tr><th>Admins</th></tr></thead>"
       for (let item in myObj) {
         text += "<tr><td>" + myObj[item]["Region-Admin"] + "</td></tr>";
         console.log(myObj[item]["Region-Admin"])
@@ -110,9 +95,7 @@
 
 </script>
 
-   
-
-    </article>
+  </article>
   </section>
 
 
