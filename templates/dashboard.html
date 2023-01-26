@@ -3,22 +3,28 @@
   <head>
     <title>CCT Portal</title>
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Expires" content="0"/>
-<style>
-
-</style>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #DDD;
+      }
+      
+      tr:hover {background-color: #D6EEEE;}
+      </style>
   </head>
   <body>
-    <!-- <div class="content"> -->
-      <script>
-      $(function() {
-        $("#navigation").load("navbar.html");
-    });
-    </script>
 
 <div class="header">
   <img src="../assets/pearson_logo_white_bg.png" alt="logo" />
@@ -49,30 +55,15 @@
 
       <!-- <li id="demo"></li> -->
 
-
-      <script>
-      function loadDoc() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
-          }
-        };
-        xhttp.open("GET", "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/admins", true);
-        xhttp.send();
-      }
-
-      </script>
-
         <!-- <div> -->
           <nav>
-          <h3>Active Slumbering Admins</h3>
+          <h3></h3>
           <div class="vertical-menu">
           <a href="#" class="active">Admins</a>
           <ul>
               <!-- <li> -->
                 <!-- <a href="{{url_for('demo', type='{{ item }}' )}}"> <p id="demo"></p> </a> -->
-                <li id="demo"></li>
+                <!-- <li id="demo"></li> -->
               <!-- </li> -->
               
           </ul>
@@ -81,26 +72,49 @@
         <!-- </div> -->
     <!-- </div> -->
     <article>
-      <h1>Information</h1>
-      <button type="button" onclick="loadDoc()">Request data</button>
-      <!-- <img src="../plot_running.png" alt="running plot">   -->
-      <!-- <img src="/plot_stopped.png" alt="stopped plot">   -->
+      <h1>Active Slumbering Admins</h1>
+      <button type="button" onclick="loadDoc2()">Request data</button>
+     
+      <p id="demo"></p>
+
+<script>
+      // This is the best so far!!!!!!!!!!!!!!!!!!!
+      // Used with this: 
+//     #set($inputRoot = $input.path('$'))  
+// {  
+//     ## "Count": "$inputRoot.Count",  
+//     "Items": [  
+//         #foreach($elem in $inputRoot.Items)  
+//         {"Region-Admin": "$elem.Region-Admin.S"} 
+//         #if($foreach.hasNext),#end  
+//         #end  
+//     ]  
+// }
+
+  function loadDoc2() {
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function() {
+      const myObj = JSON.parse(this.responseText)["Items"];
+      console.log(myObj)
+      let text = "<table border='1'>"
+      for (let item in myObj) {
+        text += "<tr><td>" + myObj[item]["Region-Admin"] + "</td></tr>";
+        console.log(myObj[item]["Region-Admin"])
+      }
+      text += "</table>"    
+      document.getElementById("demo").innerHTML = text;
+    }
+    xmlhttp.open("GET", "https://at2tkao204.execute-api.us-east-1.amazonaws.com/stable/dbquery", true);
+    xmlhttp.send();
+      }
+
+</script>
+
+   
+
     </article>
   </section>
 
-  <script>
-    function loadDoc() {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("demo").innerHTML = this.responseText;
-        }
-      };
-      xhttp.open("GET", "https://u3r5v232ba.execute-api.us-east-1.amazonaws.com/test/admins", true);
-      xhttp.send();
-    }
-
-    </script>
 
   <div class="footer">
     <!-- <p>Footer</p> -->
