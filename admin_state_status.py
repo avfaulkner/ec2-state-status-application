@@ -68,15 +68,15 @@ def main():
     # all running and stopped Admin instances who have opted into the demo admin program. 
     filters = [
         {
-            'Name': 'tag:t_role',
-            'Values': ['Admin']
+            'Name': 'tag:role',
+            'Values': ['Group1']
         },
         {
             'Name': 'instance-state-name', 
             'Values': ['running', 'stopped']
         },
         {
-            'Name': 'tag:demo-admin', 
+            'Name': 'tag:demo', 
             'Values': ['true']  
         }
     ]
