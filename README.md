@@ -1,4 +1,4 @@
-# AWS EC2 State Status Application
+# AWS EC2 State Status Web Application
 
 The purpose of this portal is provide a principle location in which users can gain insight into a particular set of AWS EC2 instances.
 Users will have access to the state status of the machines and more. 
